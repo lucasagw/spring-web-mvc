@@ -96,12 +96,6 @@
 			<artifactId>junit-jupiter-api</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>com.lowagie</groupId>
-			<artifactId>itext</artifactId>
-			<version>4.2.0</version>
-		</dependency>
 	</dependencies>
 
 	<build>
