@@ -168,12 +168,13 @@ public class PessoaController {
 
 	}
 
-	@GetMapping("**/editarpessoa/{idpessoa}") // nova forma
+	@GetMapping("/editarpessoa/{idpessoa}") // nova forma
 	public ModelAndView editar(@PathVariable("idpessoa") Long idpessoa) {
 		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
 		andView.addObject("pessoa", pessoa.get());
 		andView.addObject("profissoes", profissaoRepository.findAll()); // carrega o combo Profissao
+		andView.addObject("pessoas", pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome"))));
 		return andView;
 
 	}
