@@ -12,4 +12,9 @@ public class IndexcController {
 		return "index";
 	}
 
+	@RequestMapping(value = "/lgoin", method = RequestMethod.GET)
+	public String login() {
+		return "login";
+	}
+
 }
