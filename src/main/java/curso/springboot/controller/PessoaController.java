@@ -50,7 +50,7 @@ public class PessoaController {
 
 	@RequestMapping(value = "**/cadastropessoa", method = RequestMethod.GET)
 	public ModelAndView inicio() {
-		ModelAndView andView = new ModelAndView("/cadastro/cadastropessoa");
+		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
 		andView.addObject("pessoa", new Pessoa()); // instanciando um objeto vazio de pessoa
 													// para primeiro acesso ao form cadastro
 		Iterable<Pessoa> pessoa = pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome")));
