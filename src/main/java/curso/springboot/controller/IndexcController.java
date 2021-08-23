@@ -12,7 +12,7 @@ public class IndexcController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/lgoin", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "login";
 	}
