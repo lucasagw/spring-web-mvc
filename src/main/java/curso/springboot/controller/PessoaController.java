@@ -48,7 +48,7 @@ public class PessoaController {
 	@Autowired
 	private ReportUtil reportUtil;
 
-	@RequestMapping(value = "/cadastropessoa", method = RequestMethod.GET)
+	@RequestMapping(value = "**/cadastropessoa", method = RequestMethod.GET)
 	public ModelAndView inicio() {
 		ModelAndView andView = new ModelAndView("/cadastro/cadastropessoa");
 		andView.addObject("pessoa", new Pessoa()); // instanciando um objeto vazio de pessoa
