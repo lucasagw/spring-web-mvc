@@ -85,7 +85,7 @@
 					</div>
 				</div>
 
-				<div class="row" sec:authorize="hasAnyRole('ROLE_TECNICO', 'ROLE_CAIXA')">
+				<div class="row" sec:authorize="hasAnyRole('ROLE_TECNICO', 'ROLE_CAIXA', 'ROLE_ADMIN')">
 					<!--hasRole para um papel-->
 					<div class="input-fiel col s6">
 						<label for="idade" class="active">Idade</label>
