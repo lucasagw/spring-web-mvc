@@ -86,7 +86,7 @@ public class PessoaController {
 		pessoa.setTelefones(telefoneRepository.getTelefoneByPessoa(pessoa.getId()));
 
 		if (bindingResult.hasErrors()) {
-			ModelAndView andView = new ModelAndView("/cadastro/cadastropessoa");
+			ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
 			Iterable<Pessoa> pessoaIt = pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome")));
 			andView.addObject("pessoas", pessoaIt);
 			andView.addObject("pessoa", pessoa);
@@ -119,7 +119,7 @@ public class PessoaController {
 		}
 
 		pessoaRepository.save(pessoa);
-		ModelAndView andView = new ModelAndView("/cadastro/cadastropessoa");
+		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
 		Iterable<Pessoa> pessoaIt = pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome")));
 		andView.addObject("pessoas", pessoaIt);
 		andView.addObject("profissoes", profissaoRepository.findAll()); // carrega o combo Profissao
@@ -130,7 +130,7 @@ public class PessoaController {
 
 	@RequestMapping(value = "/listapessoa", method = RequestMethod.GET)
 	public ModelAndView pessoas() {
-		ModelAndView andView = new ModelAndView("/cadastro/cadastropessoa");
+		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
 		Iterable<Pessoa> pessoa = pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome")));
 		andView.addObject("pessoas", pessoa);
 
@@ -170,7 +170,7 @@ public class PessoaController {
 
 	@GetMapping("/editarpessoa/{idpessoa}") // nova forma
 	public ModelAndView editar(@PathVariable("idpessoa") Long idpessoa) {
-		ModelAndView andView = new ModelAndView("/cadastro/cadastropessoa");
+		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
 		andView.addObject("pessoa", pessoa.get());
 		andView.addObject("profissoes", profissaoRepository.findAll()); // carrega o combo Profissao
@@ -180,7 +180,7 @@ public class PessoaController {
 
 	@GetMapping("/removerpessoa/{idpessoa}")
 	public ModelAndView excluir(@PathVariable("idpessoa") Long idpessoa) {
-		ModelAndView andView = new ModelAndView("/cadastro/cadastropessoa");
+		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
 		pessoaRepository.deleteById(idpessoa);
 
 		andView.addObject("pessoas", pessoaRepository.findAll(PageRequest.of(0, 5, Sort.by("nome"))));
@@ -195,7 +195,7 @@ public class PessoaController {
 	public ModelAndView pesquisar(@RequestParam("nomePesquisa") String nome,
 			@RequestParam("sexoPesquisa") String sexoPesquisa,
 			@PageableDefault(size = 5, sort = { "nome" }) Pageable pageable) {
-		ModelAndView andView = new ModelAndView("/cadastro/cadastropessoa");
+		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
 
 		Page<Pessoa> pessoas = null;
 
@@ -274,7 +274,7 @@ public class PessoaController {
 
 	@GetMapping("/telefones/{idpessoa}")
 	public ModelAndView telefones(@PathVariable("idpessoa") Long idpessoa) {
-		ModelAndView andView = new ModelAndView("/cadastro/telefones");
+		ModelAndView andView = new ModelAndView("cadastro/telefones");
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
 		andView.addObject("pessoa", pessoa.get());
 		andView.addObject("telefones", telefoneRepository.getTelefoneByPessoa(idpessoa));
@@ -288,7 +288,7 @@ public class PessoaController {
 
 		if (telefone != null && telefone.getNumero().isEmpty() || telefone.getTipo().isEmpty()) {
 
-			ModelAndView andView = new ModelAndView("/cadastro/telefones");
+			ModelAndView andView = new ModelAndView("cadastro/telefones");
 			andView.addObject("pessoa", pessoa);
 			andView.addObject("telefones", telefoneRepository.getTelefoneByPessoa(pessoaid));
 
@@ -306,7 +306,7 @@ public class PessoaController {
 
 		}
 
-		ModelAndView andView = new ModelAndView("/cadastro/telefones");
+		ModelAndView andView = new ModelAndView("cadastro/telefones");
 
 		telefone.setPessoa(pessoa); // amarra telefone a uma pessoa
 		telefoneRepository.save(telefone);
@@ -320,7 +320,7 @@ public class PessoaController {
 
 	@GetMapping("/removertelefone/{idtelefone}")
 	public ModelAndView excluirTelefone(@PathVariable("idtelefone") Long idtelefone) {
-		ModelAndView andView = new ModelAndView("/cadastro/telefones");
+		ModelAndView andView = new ModelAndView("cadastro/telefones");
 
 		Pessoa pessoa = telefoneRepository.findById(idtelefone).get().getPessoa();
 
